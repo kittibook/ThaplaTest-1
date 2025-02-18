@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  idcard    String
+  fullname  String
+  class     String
+  school    String
+  level     String
+  createAt  DateTime    @default(now())
+  Score     Score[]
+  Number    Number[]
+  NumberALL NumberALL[]
+}
+
+model Score {
+  id     Int    @id @default(autoincrement())
+  Userid Int
+  User   User   @relation(fields: [Userid], references: [id])
+  Class  String
+  Score  String
+}
+
+model Number {
+  id     Int    @id @default(autoincrement())
+  Userid Int
+  User   User   @relation(fields: [Userid], references: [id])
+  Class  String
+  Number String
+}
+
+model NumberALL {
+  id        Int    @id @default(autoincrement())
+  Userid    Int
+  User      User   @relation(fields: [Userid], references: [id])
+  Class     String
+  NumberALL String
+}
+
+model Web {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  icon        String
+  linkfb      String
+  linkweb     String
+}
+
+model Img {
+  id         Int    @id @default(autoincrement())
+  iconnavbar String
+  banner     String
+  btn1       String
+  btn2       String
+  btn3       String
+  btn4       String
+  iconjump   String
+}
+
+model admin {
+  id       Int    @id @default(autoincrement())
+  user     String
+  password String
+}
+
+model level {
+  id        Int    @id @default(autoincrement())
+  img String
+  lable String
+}
+
+model history {
+  id        Int    @id @default(autoincrement())
+  adminid   Int
+  adminname String
+  action    String
+  ip        String
+  createAt  DateTime    @default(now())
+
+}
+
+// bunx prisma migrate dev --name init
