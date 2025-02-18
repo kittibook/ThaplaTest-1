@@ -32,7 +32,7 @@ class ComponentToPrintCertificate extends React.Component {
             className="relative w-full h-full bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://apipic.bxoks.online/public/uploads/2HKYl51xVSCYATq25ws49.png')",
+                "url('')",
             }}
           >
             {/* ชื่อที่อยู่ตรงกลางของใบประกาศ */}
